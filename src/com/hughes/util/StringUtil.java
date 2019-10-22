@@ -27,18 +27,22 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterOutputStream;
 
+/** Functions for common operations on text. */
 public final class StringUtil {
 
     private static final Pattern WHITESPACE = Pattern.compile("\\s+");
 
+    /** Remove multiple consecutive whitespaces. */
     public static String normalizeWhitespace(final String s) {
         return WHITESPACE.matcher(s.trim()).replaceAll(" ");
     }
 
+    /** Get String from stream. */
     public static String readToString(final InputStream inputStream) {
         return new Scanner(inputStream).useDelimiter("\\A").next();
     }
 
+    /** Convert unicode characters to HTML encoding. */
     public static String escapeUnicodeToPureHtml(final String s) {
         final StringBuilder result = new StringBuilder();
         for (int i = 0; i < s.codePointCount(0, s.length()); ++i) {
@@ -54,27 +58,35 @@ public final class StringUtil {
 
     private static final Pattern ALL_ASCII = Pattern.compile("[\\p{ASCII}]*");
 
+    /** Check if ASCII only string. */
     @SuppressWarnings("unused")
     public static boolean isAscii(final String s) {
         return ALL_ASCII.matcher(s).matches();
     }
 
+    /** Check character is a latin letter. */
     private static boolean isLatinLetter(final char c) {
         return c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z';
     }
 
+    /** Check character is not extra HTML. */
     private static boolean isPureHtml(final char c) {
         return c <= 127 && c != '<' && c != '>' && c != '&' && c != '\'' && c != '"';
     }
 
+    /** Check character is a digit. */
     private static boolean isDigit(final char c) {
         return c >= '0' && c <= '9';
     }
 
+    /** Check character is a stardard URL character.
+     * 
+     * i.e. does not need URL encoding. */
     private static boolean isUnreservedUrlCharacter(final char c) {
         return isLatinLetter(c) || isDigit(c) || c == '-' || c == '_' || c == '.' || c == '~';
     }
 
+    /** URLEncode. */
     public static String encodeForUrl(final String s) {
         final StringBuilder result = new StringBuilder();
         byte[] bytes;
@@ -95,6 +107,7 @@ public final class StringUtil {
         return result.toString();
     }
 
+    /** URLDecode. */
     public static String decodeFromUrl(final String s) {
         final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         for (int i = 0; i < s.length(); ++i) {
@@ -169,6 +182,7 @@ public final class StringUtil {
         return outBytes;
     }
 
+    /** Check if String is empty. */
     @SuppressWarnings("unused")
     public static boolean isNullOrEmpty(final String s) {
         return s == null || s.length() == 0;

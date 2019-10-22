@@ -16,12 +16,14 @@ package com.hughes.util;
 
 import java.util.LinkedHashMap;
 
+/** Least recently used cache map. */
 public class LRUCacheMap<K,V> extends LinkedHashMap<K, V> {
 
     private static final long serialVersionUID = 197833078417223126L;
 
     private final int maxSize;
 
+    /** Builds a LRUCacheMap. */
     public LRUCacheMap(final int maxSize) {
         // we do not want re-hashing, so manually apply a
         // load factor and set the load factor argument to a high value
@@ -29,6 +31,7 @@ public class LRUCacheMap<K,V> extends LinkedHashMap<K, V> {
         this.maxSize = maxSize;
     }
 
+    /** Remove the least recently used item. */
     @Override
     protected boolean removeEldestEntry(java.util.Map.Entry<K, V> eldest) {
         return this.size() > maxSize;

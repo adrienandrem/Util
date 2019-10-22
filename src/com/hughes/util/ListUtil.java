@@ -16,23 +16,32 @@ package com.hughes.util;
 
 import java.util.List;
 
+/** Functions for common operations on lists. */
 public final class ListUtil {
 
+    /** Get element at given index.
+     * 
+     * @param defaultValue returned value if index is greater than list size */
     @SuppressWarnings("WeakerAccess")
     public static <T> T get(final List<T> list, final int index, final T defaultValue) {
         return index < list.size() ? list.get(index) : defaultValue;
     }
 
+    /** Get element at given index. */
     @SuppressWarnings("unused")
     public static <T> T get(final List<T> list, final int index) {
         return get(list, index, null);
     }
 
+    /** Extract element at given index.
+     * 
+     * element is removed from list. */
     @SuppressWarnings("unused")
     public static <T> T remove(final List<T> list, final int index, final T defaultValue) {
         return index < list.size() ? list.remove(index) : defaultValue;
     }
 
+    /** Swap 2 elements. */
     public static <T> void swap(final List<T> list, int i1, int i2) {
         if (i1 == i2) {
             return;

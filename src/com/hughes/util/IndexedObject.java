@@ -14,18 +14,21 @@
 
 package com.hughes.util;
 
-/**
- * An object that knows its position (index) inside a list.
- */
+/** An object that knows its position (index) inside a list. */
 public class IndexedObject {
 
+    /** Position in list. */
     protected int index;
 
+    /** Build IndexedObject.
+     * 
+     * @param index position */
     @SuppressWarnings("WeakerAccess")
     public IndexedObject(final int index) {
         this.index = index;
     }
 
+    /** Position in list. */
     public int index() {
         return index;
     }
