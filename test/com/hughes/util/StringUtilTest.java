@@ -58,27 +58,4 @@ public class StringUtilTest extends TestCase {
         assertEquals(in, out);
     }
 
-    public void testURLs() {
-        {
-            final String s = "asdf< >a%b%c<->asdf";
-            final String url = "asdf%3C+%3Ea%25b%25c%3C-%3Easdf";
-            assertEquals(url, StringUtil.encodeForUrl(s));
-            assertEquals(s, StringUtil.decodeFromUrl(url));
-        }
-
-        {
-            final String s = "röten";
-            final String url = "r%C3%B6ten";
-            assertEquals(url, StringUtil.encodeForUrl(s));
-            assertEquals(s, StringUtil.decodeFromUrl(url));
-        }
-
-        {
-            final String s = "%";
-            final String url = "%25";
-            assertEquals(url, StringUtil.encodeForUrl(s));
-            assertEquals(s, StringUtil.decodeFromUrl(url));
-        }
-    }
-
 }
