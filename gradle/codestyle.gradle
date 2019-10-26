@@ -1,0 +1,8 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion '8.8'
+    configFile file("config/checkstyle/checkstyle.xml")
+    ignoreFailures = true
+    showViolations = false
+}

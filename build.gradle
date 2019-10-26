@@ -1,6 +1,7 @@
 apply plugin: 'java'
 
 apply from: 'gradle/coverage.gradle'
+apply from: 'gradle/codestyle.gradle'
 
 group = 'com.hughes.util'
 version = '1.0.0-SNAPSHOT'
@@ -15,6 +16,7 @@ tasks.withType(JavaCompile) {
 }
 
 repositories {
+     mavenLocal()
      mavenCentral()
 }
 
